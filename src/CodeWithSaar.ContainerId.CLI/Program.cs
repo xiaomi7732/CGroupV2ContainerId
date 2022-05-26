@@ -4,5 +4,9 @@ string containerId = await ContainerService.GetContainerIdAsync();
 
 if (string.IsNullOrEmpty(containerId))
 {
-    Console.WriteLine("No container id found. Is this inside a container?");
+    Console.Error.WriteLine("No container id found. Is this inside a container?");
+    return -1;
 }
+
+Console.WriteLine("Container Id: {0}", containerId);
+return 0;
