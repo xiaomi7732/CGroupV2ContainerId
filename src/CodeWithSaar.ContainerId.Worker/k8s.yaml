@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cid-worker
+  labels:
+    app: cid-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cid-worker
+  template:
+    metadata:
+      labels:
+        app: cid-worker
+    spec:
+      containers:
+      - name: cid-worker
+        image: saars/cid-worker
+        ports:
+        - containerPort: 80
