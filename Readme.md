@@ -1,8 +1,11 @@
 # Get the container id
 
-Getting container id is sort of important for diagnostic / logging. It has been working by fetching `/proc/self/cgroup` for container id until lately, `cGroupV2` rolls out, and there need to be new ways to get it.
+![Package-Badge](https://img.shields.io/nuget/v/CodeWithSaar.Extensions.ContainerId?style=flat-square)
+![Download-Badge](https://img.shields.io/nuget/dt/CodeWithSaar.Extensions.ContainerId?style=flat-square)
 
-This repo is a yield of the investigation to aggregate various ways to get container ids for both cGroupV1 or cGroupV2. Shall be able to extend to support other cases as time goes by.
+Getting container id is sort of important for diagnostic / logging. It has been working by fetching `/proc/self/cgroup` for container id until lately, `cGroupV2` rolls out, and there needs to be new ways to get it.
+
+This repo is a yield of the investigations to aggregate various ways to get container ids for both cGroupV1 or cGroupV2 containers. When needed, it shall be able to be extended to support other technologies as time goes by.
 
 ## Get Started
 
@@ -15,7 +18,7 @@ Output:
 
 > Container Id: 7f1477ac7aa29f3e52d8d4f25632e9df461a3855cc8cd8ad071ad94181381215
 
-## See inspect logs from the worker
+## Inspect logs from the worker
 
 * Deploy `saars/cid-worker` into a Kubernetes cluster.
 * Check the logs of the pod: `kubectl logs <podName>`
@@ -26,7 +29,7 @@ info: CodeWithSaar.Extensions.ContainerId.CGroupV2ContainerIdProvider[0] Matched
 info: CodeWithSaar.ContainerId.Worker.Worker[0] Container Id: 01d1ad1a7b528295f2d03619b35f995be9ddddcfd2a83c013df129aa6cc4d332. Wait for 10 seconds.
 ```
 
-* Notice that the first provider missed the container since it doesn't exist. But the second provider got it.
+* Notice, in that case, the first provider missed the container since it doesn't exist. But the second provider got it.
 
 ## Use the NuGet Package
 
