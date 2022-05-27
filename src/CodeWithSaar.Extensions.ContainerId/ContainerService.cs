@@ -6,9 +6,9 @@ namespace CodeWithSaar.Extensions.ContainerId;
 
 public static class ContainerService
 {
-    private static readonly Lazy<IEnumerable<IContainerService>> s_containerServices = new Lazy<IEnumerable<IContainerService>>(() =>
+    private static readonly Lazy<IEnumerable<IInternalContainerService>> s_containerServices = new Lazy<IEnumerable<IInternalContainerService>>(() =>
     {
-        return new IContainerService[]{
+        return new IInternalContainerService[]{
             new CGroupV1ContainerIdProvider(new CGroupV1ContainerIdMatcher()),
             new CGroupV2ContainerIdProvider(new CGroupV2ContainerIdMatcher()),
         };

@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CodeWithSaar.Extensions.ContainerId;
 
-internal class CGroupV1ContainerIdProvider : IContainerService
+internal class CGroupV1ContainerIdProvider : IInternalContainerService
 {
     private const string InfoFilePath = "/proc/self/cgroup";
     private readonly IContainerIdMatcher _matcher;

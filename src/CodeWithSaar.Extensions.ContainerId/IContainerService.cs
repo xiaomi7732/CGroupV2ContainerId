@@ -9,3 +9,8 @@ public interface IContainerService
     /// </summary>
     Task<string> GetContainerIdAsync();
 }
+
+internal interface IInternalContainerService : IContainerService
+{
+
+}

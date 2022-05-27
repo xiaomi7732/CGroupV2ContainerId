@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 
 namespace CodeWithSaar.Extensions.ContainerId;
 
-public class ContainerIdProvider : IContainerService
+internal class ContainerIdProvider : IContainerService
 {
-    private readonly IEnumerable<IContainerService> _containerServices;
+    private readonly IEnumerable<IInternalContainerService> _containerServices;
 
-    public ContainerIdProvider(IEnumerable<IContainerService> containerServices)
+    public ContainerIdProvider(IEnumerable<IInternalContainerService> containerServices)
     {
         _containerServices = containerServices ?? throw new System.ArgumentNullException(nameof(containerServices));
     }

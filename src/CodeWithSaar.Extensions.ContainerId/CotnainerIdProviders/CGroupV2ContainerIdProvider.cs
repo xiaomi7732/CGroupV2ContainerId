@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CodeWithSaar.Extensions.ContainerId;
 
-internal class CGroupV2ContainerIdProvider : IContainerService
+internal class CGroupV2ContainerIdProvider : IInternalContainerService
 {
     private const string InfoFilePath = "/proc/self/mountinfo";
     private readonly IContainerIdMatcher _matcher;
