@@ -14,7 +14,7 @@ internal class CGroupV2ContainerIdProvider : IInternalContainerService
 
     public CGroupV2ContainerIdProvider(
         IContainerIdMatcher<CGroupV2ContainerIdProvider> matcher,
-        ILogger<CGroupV1ContainerIdProvider>? logger = null)
+        ILogger<CGroupV2ContainerIdProvider>? logger = null)
     {
         _matcher = matcher ?? throw new ArgumentNullException(nameof(matcher));
         _logger = logger;

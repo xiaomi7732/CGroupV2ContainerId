@@ -22,8 +22,8 @@ public class Worker : BackgroundService
             using (IServiceScope scope = _serviceScopeFactory.CreateScope())
             {
                 IContainerService containerService = scope.ServiceProvider.GetRequiredService<IContainerService>();
-                _logger.LogInformation("Container Id: {containerId}", await containerService.GetContainerIdAsync());
-                await Task.Delay(1000, stoppingToken);
+                _logger.LogInformation("Container Id: {containerId}. Wait for 10 seconds.", await containerService.GetContainerIdAsync());
+                await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
             }
         }
     }
