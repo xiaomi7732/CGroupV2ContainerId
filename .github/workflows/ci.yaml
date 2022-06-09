@@ -40,7 +40,7 @@ jobs:
 
         strategy:
             matrix:
-                targetProject: [tests/CodeWithSaar.Extensions.ContainerId.Tests]
+                targetProject: [ tests/CodeWithSaar.Extensions.ContainerId.Tests/CodeWithSaar.Extensions.ContainerId.Tests.csproj ]
                 buildConfiguration: [Debug, Release]
 
         steps:
