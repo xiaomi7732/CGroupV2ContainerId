@@ -38,7 +38,7 @@
     ```powershell
     $dockeraccount='saars'  # switch with your docker account
     $image='cid-worker'            # container id
-    $version='latest'       # the version number
+    $version='0.0.2'       # the version number
     ```
 
 1. Build docker image
