@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    strategy:
+      matrix:
+        targetProject: [src/CodeWithSaar.Extensions.ContainerId, src/CodeWithSaar.ContainerId.CLI, src/CodeWithSaar.ContainerId.Worker]
+        buildConfiguration: [Debug, Release]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.x
+
+      - name: Restore CLI
+        run: dotnet restore -c ${{ matrix.buildConfiguration }} ${{ matrix.targetProject}}
+
+      - name: Build
+        run: dotnet build -c ${{ matrix.buildConfiguration }} --no-restore ${{ matrix.targetProject}}
+
+  tests:
+    runs-on: ubuntu-22.04
+    
+    strategy:
+      matrix:
+        targetProject: [tests/CodeWithSaar.Extensions.ContainerId.Tests]
+        buildConfiguration: [Debug, Release]
+
+    steps:
+      - name: Build
+        run: dotnet build -c ${{ matrix.buildConfiguration }} ${{ matrix.targetProject }}
+      - name: Test
+        run: dotnet test -c ${{ matrix.buildConfiguration }} --verbosity normal --no-build ${{ matrix.targetProject }}
