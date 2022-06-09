@@ -30,10 +30,10 @@ jobs:
                   dotnet-version: 6.x
 
             - name: Restore CLI
-              run: dotnet restore ${{ matrix.targetProject}}
+              run: dotnet restore ${{ matrix.targetProject }} /p:BuildConfiguration=${{ matrix.buildConfiguration }}
 
             - name: Build
-              run: dotnet build -c ${{ matrix.buildConfiguration }} --no-restore ${{ matrix.targetProject}}
+              run: dotnet build -c ${{ matrix.buildConfiguration }} --no-restore ${{ matrix.targetProject }}
 
     tests:
         runs-on: ubuntu-22.04
@@ -49,8 +49,11 @@ jobs:
               with:
                   dotnet-version: 6.x
 
+            - name: Restore
+              run: dotnet restore ${{ matrix.targetProject }}
+
             - name: Build
-              run: dotnet build -c ${{ matrix.buildConfiguration }} ${{ matrix.targetProject }}
+              run: dotnet build ${{ matrix.targetProject }} -c ${{ matrix.buildConfiguration }} 
 
             - name: Test
               run: dotnet test -c ${{ matrix.buildConfiguration }} --verbosity normal --no-build ${{ matrix.targetProject }}
