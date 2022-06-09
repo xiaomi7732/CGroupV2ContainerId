@@ -8,7 +8,7 @@ internal class ContainerDMountInfoContainerIdProvider : FileContainerIdProviderB
 
     public ContainerDMountInfoContainerIdProvider(
         IContainerIdParser<ContainerDMountInfoContainerIdProvider> containerIdMatcher,
-        ILogger<FileContainerIdProviderBase>? logger = null)
+        ILogger<ContainerDMountInfoContainerIdProvider>? logger = null)
         : base(InfoFilePath, containerIdMatcher, logger)
     {
     }
