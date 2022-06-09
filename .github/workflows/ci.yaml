@@ -30,7 +30,7 @@ jobs:
                   dotnet-version: 6.x
 
             - name: Restore CLI
-              run: dotnet restore ${{ matrix.targetProject }} /p:BuildConfiguration=${{ matrix.buildConfiguration }}
+              run: dotnet restore ${{ matrix.targetProject }} /p:Configuration=${{ matrix.buildConfiguration }}
 
             - name: Build
               run: dotnet build -c ${{ matrix.buildConfiguration }} --no-restore ${{ matrix.targetProject }}
@@ -44,6 +44,8 @@ jobs:
                 buildConfiguration: [Debug, Release]
 
         steps:
+            - uses: actions/checkout@v3
+
             - name: Setup .NET
               uses: actions/setup-dotnet@v2
               with:
