@@ -3,9 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace CodeWithSaar.Extensions.ContainerId;
 
-internal class CGroupV1ContainerIdMatcher : IContainerIdMatcher<CGroupV1ContainerIdProvider>
+internal class DockerEngineMountInfoContainerIdParser : IContainerIdParser<DockerEngineMountInfoContainerIdProvider>
 {
-    private const string Pattern = @"cpu.+\/([^\/]*)$";
+    private const string Pattern = @"\/docker\/containers\/(.*?)\/";
     private static readonly Regex s_ContainerIdMatchPattern = new Regex(Pattern, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant, matchTimeout: TimeSpan.FromSeconds(1));
 
     public bool TryMatch(string input, out string result)

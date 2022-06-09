@@ -9,11 +9,13 @@ public static class Register
 {
     public static IServiceCollection TryAddContainerIdServices(this IServiceCollection services)
     {
-        services.TryAddTransient<IContainerIdMatcher<CGroupV1ContainerIdProvider>, CGroupV1ContainerIdMatcher>();
-        services.TryAddTransient<IContainerIdMatcher<CGroupV2ContainerIdProvider>, CGroupV2ContainerIdMatcher>();
+        services.TryAddTransient<IContainerIdParser<CGroupV1ContainerIdProvider>, CGroupV1ContainerIdParser>();
+        services.TryAddTransient<IContainerIdParser<ContainerDMountInfoContainerIdProvider>, ContainerDMountInfoContainerIdParser>();
+        services.TryAddTransient<IContainerIdParser<DockerEngineMountInfoContainerIdProvider>, DockerEngineMountInfoContainerIdParser>();
 
         services.TryAddEnumerable(ServiceDescriptor.Transient<IInternalContainerService, CGroupV1ContainerIdProvider>());
-        services.TryAddEnumerable(ServiceDescriptor.Transient<IInternalContainerService, CGroupV2ContainerIdProvider>());
+        services.TryAddEnumerable(ServiceDescriptor.Transient<IInternalContainerService, ContainerDMountInfoContainerIdProvider>());
+        services.TryAddEnumerable(ServiceDescriptor.Transient<IInternalContainerService, DockerEngineMountInfoContainerIdProvider>());
 
         services.TryAddTransient<IContainerService, ContainerIdProvider>();
 

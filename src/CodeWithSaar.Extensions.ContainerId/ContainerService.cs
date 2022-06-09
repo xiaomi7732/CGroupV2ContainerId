@@ -9,8 +9,9 @@ public static class ContainerService
     private static readonly Lazy<IEnumerable<IInternalContainerService>> s_containerServices = new Lazy<IEnumerable<IInternalContainerService>>(() =>
     {
         return new IInternalContainerService[]{
-            new CGroupV1ContainerIdProvider(new CGroupV1ContainerIdMatcher()),
-            new CGroupV2ContainerIdProvider(new CGroupV2ContainerIdMatcher()),
+            new CGroupV1ContainerIdProvider(new CGroupV1ContainerIdParser()),
+            new ContainerDMountInfoContainerIdProvider(new ContainerDMountInfoContainerIdParser()),
+            new DockerEngineMountInfoContainerIdProvider(new DockerEngineMountInfoContainerIdParser()),
         };
     }, isThreadSafe: true);
 
